@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: appstore
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+server:
+  port: 8080
+  servlet:
+    context-path: /appstore
+logging:
+  config: classpath:logback-spring.xml
+mybatis:
+  mapper-locations: classpath:com/newlandpay/newretail/appstore/biz/dao/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+mapper:
+  not-empty: false
+  identity: MYSQL
+  mappers:
+    - com.newlandpay.newretail.appstore.utils.MyMapper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+task-executor:
+  core-pool-size: 5
+  max-pool-size: 20
+  queue-capacity: 400

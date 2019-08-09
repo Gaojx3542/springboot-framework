@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!--通用 Mapper 插件，可以生成带注解的实体类-->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.newlandpay.newretail.appstore.utils.MyMapper"/>
+            <property name="forceAnnotation" value="true"/>
+            <property name="beginningDelimiter" value="`"/>
+            <property name="endingDelimiter" value="`"/>
+        </plugin>
+
+        <!--通用代码生成器插件 生成mapper接口-->
+        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+            <property name="baseMapper" value="com.newlandpay.newretail.appstore.utils.MyMapper"/>
+            <property name="targetProject" value="src/main/java"/>
+            <property name="targetPackage" value="com.newlandpay.newretail.appstore.biz.dao"/>
+            <property name="templatePath" value="generator/mapper.ftl"/>
+            <property name="mapperSuffix" value="Dao"/>
+            <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.java"/>
+        </plugin>
+
+        <!--生成mapper.xml-->
+        <plugin type="tk.mybatis.mapper.generator.TemplateFilePlugin">
+            <property name="targetProject" value="src/main/resources"/>
+            <property name="targetPackage" value="com/newlandpay/newretail/appstore/biz/dao"/>
+            <property name="mapperPackage" value="com.newlandpay.newretail.appstore.biz.dao"/>
+            <property name="templatePath" value="generator/mapperXml.ftl"/>
+            <property name="mapperSuffix" value="Dao"/>
+            <property name="fileName" value="${tableClass.shortClassName}${mapperSuffix}.xml"/>
+
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/appstore?userUnicode=true&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true"
+                        userId="root"
+                        password="abc354200">
+        </jdbcConnection>
+        <javaModelGenerator targetPackage="com.newlandpay.newretail.appstore.biz.model" targetProject="src/main/java"/>
+<!-- 代码生成 -->
+
+<!--        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>-->
+
+<!--        <javaClientGenerator targetPackage="com.newlandpay.newretail.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER" />-->
+
+        <table tableName="t_cmd">
+            <!--mysql 配置-->
+            <generatedKey column="cmd_id" sqlStatement="Mysql" identity="true"/>
+            <domainObjectRenamingRule searchString="^T" replaceString=""/>
+        </table>
+
+
+    </context>
+</generatorConfiguration>
+

@@ -1,0 +1,34 @@
+logger:
+  path: logs
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/appstore?userUnicode=true&useSSL=false&characterEncoding=UTF-8&allowMultiQueries=true
+    password: root
+    username: abc354200
+    hikari:
+      minimum-idle: 4
+      maximum-pool-size: 5
+      pool-name: AppstoreHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: select 1
+  redis:
+    password: xxxx
+    sentinel:
+      master: mymaster
+      nodes:
+        - 127.0.0.1:27480
+        - 127.0.0.1:27481
+        - 127.0.0.1:27482
+    database: 1
+resttemplate:
+  httpclient:
+    connectTimeout: 20000
+    requestTimeout: 20000
+    socketTimeout: 30000
+    defaultMaxPerRoute: 100
+    maxTotalConnections: 300
+    defaultKeepAliveTimeMillis: 20000
+    closeIdleConnectionWaitTimeSecs: 30
+
